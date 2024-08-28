@@ -1,0 +1,41 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Client {
+  createdAt DateTime @default(now())
+  email     String?
+  firstName String?
+  id        String   @id @default(cuid())
+  lastName  String?
+  requests  String?
+  updatedAt DateTime @updatedAt
+}
+
+model Watch {
+  brand     String?
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  name      String?
+  price     Float?
+  stock     Int?
+  updatedAt DateTime @updatedAt
+}
+
+model Admin {
+  createdAt DateTime       @default(now())
+  id        String         @id @default(cuid())
+  password  String?
+  role      EnumAdminRole?
+  updatedAt DateTime       @updatedAt
+  username  String?
+}
+
+enum EnumAdminRole {
+  Option1
+}
